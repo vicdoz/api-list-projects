@@ -1,0 +1,10 @@
+
+language: python
+python:
+  - '3.5'
+  - hhvm
+  - nightly
+
+script:
+    - behave tests/api/feature
+
