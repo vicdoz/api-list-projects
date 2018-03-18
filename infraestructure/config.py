@@ -1,5 +1,7 @@
 import os
 
+DB_URI = "postgresql+psycopg2://USER:PASSWORD@127.0.0.1/DBNAME"
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 
@@ -8,7 +10,7 @@ class Config(object):
     TESTING = False
     CSRF_ENABLED = True
     SECRET_KEY = 'this-really-needs-to-be-changed'
-    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://USER:PASSWORD@127.0.0.1/DBNAME"
+    SQLALCHEMY_DATABASE_URI = "%s" % DB_URI
 
 
 class ProductionConfig(Config):

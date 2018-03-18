@@ -1,8 +1,8 @@
-import hashlib
 import re
 
-
 valid_domains = ['@vicdoz.com']
+
+
 class User:
     email = None
     password = None

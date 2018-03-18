@@ -15,17 +15,19 @@ class User:
         self.db = Session()
 
     def get_by_email_and_password(self, user_entity):
-        filter_data = self.db.query \
-            (UserModel).filter(and_(
-            (user_entity.email == UserModel.email),
-            (user_entity.password == UserModel.hash))
+        filter_data = self.db.query(UserModel).filter(
+            and_(
+                (user_entity.email == UserModel.email),
+                (user_entity.password == UserModel.hash))
         )
         user_data = filter_data.one_or_none()
         return user_data
 
     def save(self, user_entity):
-        user = UserModel(email=user_entity.email, password=user_entity.password)
+        user = UserModel(
+            email=user_entity.email,
+            password=user_entity.password
+        )
         self.db.add(user)
         self.db.commit()
         return user_entity
-

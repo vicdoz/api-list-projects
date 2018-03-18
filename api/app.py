@@ -1,8 +1,5 @@
 import json
-
-from flask import Flask
-from flask import request
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, request
 from domain.user.use_case.login import Login
 from domain.user.use_case.register import Register
 
@@ -40,5 +37,3 @@ def register():
             return ('Registered', 200)
     except Exception as ex:
         return (str(ex), 400)
-
-
