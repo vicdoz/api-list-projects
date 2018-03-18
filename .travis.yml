@@ -4,5 +4,5 @@ python:
   - '3.5'
 
 script:
+    - pipenv run mamba tests/domain/
     - behave tests/api/feature
-
