@@ -11,7 +11,7 @@ class User:
     db = None
 
     def __init__(self):
-        Session = sessionmaker(bind=engine)
+        Session = sessionmaker(bind=engine, autoflush=True, autocommit=False)
         self.db = Session()
 
     def get_by_email_and_password(self, user_entity):
@@ -24,10 +24,16 @@ class User:
         return user_data
 
     def save(self, user_entity):
-        user = UserModel(
-            email=user_entity.email,
-            password=user_entity.password
-        )
-        self.db.add(user)
-        self.db.commit()
-        return user_entity
+        try:
+            user = UserModel(
+                email=user_entity.email,
+                password=user_entity.password
+            )
+            self.db.add(user)
+            self.db.commit()
+            return user_entity
+        except:
+            self.db.rollback()
+            raise
+
+
