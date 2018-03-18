@@ -24,5 +24,8 @@ class User:
         return user_data
 
     def save(self, user_entity):
-        self.db.session.add(user_entity)
-        self.db.session.commit()
+        user = UserModel(email=user_entity.email, password=user_entity.password)
+        self.db.add(user)
+        self.db.commit()
+        return user_entity
+

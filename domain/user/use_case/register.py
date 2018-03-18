@@ -7,4 +7,5 @@ class Register:
 
     def register(self, email, password):
         my_user = UserEntity(email, password)
+        my_user.validate_email()
         return self.user_service.register(my_user)

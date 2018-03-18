@@ -3,12 +3,10 @@ import json
 from flask import Flask
 from flask import request
 from flask_sqlalchemy import SQLAlchemy
-from api.config import Config
 from domain.user.use_case.login import Login
+from domain.user.use_case.register import Register
 
 app = Flask(__name__)
-app.config.from_object(Config())
-db = SQLAlchemy(app)
 
 
 @app.route("/")
@@ -29,10 +27,18 @@ def login():
     except Exception as ex:
         return (str(ex), 400)
 
-    @app.route("/user/register")
-    def register(data):
-        pass
 
-    @app.route("/user/recover_password")
-    def recover_password():
-        pass
+@app.route("/user/register", methods=['POST'])
+def register():
+    req = request.data.decode('utf-8')
+    data = json.loads(req)
+    try:
+        user = Register().register(data['email'], data['password'])
+        if user is None:
+            return ('Not allowed', 401)
+        else:
+            return ('Registered', 200)
+    except Exception as ex:
+        return (str(ex), 400)
+
+

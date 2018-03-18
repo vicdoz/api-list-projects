@@ -2,10 +2,10 @@ import hashlib
 import re
 
 
+valid_domains = ['@vicdoz.com']
 class User:
     email = None
     password = None
-    password_hash = None
 
     def __init__(self, email, password):
         self.email = email
@@ -18,7 +18,10 @@ class User:
         if self.password is None:
             raise Exception("Empty password")
 
-    def register(self):
-        regexp = re.compile(r'@vicdoz.com')
-        if not regexp.search(self.email):
-            raise Exception("Not allowed")
+    def validate_email(self):
+        is_valid = True
+        for domain in valid_domains:
+            regexp = re.compile(domain)
+            if not regexp.search(self.email):
+                raise Exception("Not allowed")
+        return is_valid
