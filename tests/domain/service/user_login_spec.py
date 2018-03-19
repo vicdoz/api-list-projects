@@ -9,7 +9,7 @@ from infraestructure.user.repository.user import User as UserRepository
 with description(UserService) as self:
     with before.each:
         self.repository = Stub(UserRepository)
-        self.entity = UserEntity("email", "password")
+        self.entity = UserEntity("test_login@vicdoz.com", "password")
 
     with description("with no users registered"):
         with before.each:

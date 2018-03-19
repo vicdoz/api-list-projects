@@ -32,8 +32,6 @@ class User:
             self.db.add(user)
             self.db.commit()
             return user_entity
-        except:
+        except Exception:
             self.db.rollback()
-            raise
-
-
+            return None
