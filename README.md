@@ -4,12 +4,19 @@ The objective of this repository is to play with TDD in python.
 
 <b>Requirements</b><br>
 
-Requirement 1:<br>
+Requirement 1: :white_check_mark: <br>
 An API is needed to register users from an email and a password
 
-Requirement 2:<br>
+Requirement 2: :white_check_mark: <br>
 Only users of the domain "vicdoz.com" can be registered
 
+Requirement 3: :red_circle: <br>
+The system can save projects. A project contains:
+ - code
+ - description
+ - url
+ - owner
+ 
 <b>Components</b><br>
 
 Component 1:API -> Receive external requests and invoke the use case<br>
