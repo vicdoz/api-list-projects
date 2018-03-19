@@ -28,9 +28,20 @@ with description(UserService) as self:
             result = UserService(self.repository).register(self.entity)
             expect(result).to(equal(self.entity))
 
-    with description("User with invalid domain"):
+    # This is not the way, but the expect assertion can't instanciate an object that raises a exception
+    with description("User with invalid domain "):
         with it("with domain = GMAIL.COM"):
-            # This is not the way, but the expect assertion can't instanciate an object that raises a exception
             user_entity = UserEntity("test_register@vicdoz.com", "THE_PASSWORD_SUPERSECURE")
             user_entity.email = "test_register@GMAIL.COM"
             expect(user_entity.validate_email).to(raise_error)
+
+    with description("User without any data "):
+        with it("without email"):
+            user_entity = UserEntity("test@vicdoz.com", "THE_PASSWORD_SUPERSECURE")
+            user_entity.email = None
+            expect(user_entity.validate_user_has_all_fields).to(raise_error)
+
+        with it("without password"):
+            user_entity = UserEntity("test@vicdoz.com", "my_password")
+            user_entity.password = None
+            expect(user_entity.validate_user_has_all_fields).to(raise_error)
