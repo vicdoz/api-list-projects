@@ -5,9 +5,16 @@ from unittest.mock import MagicMock
 from infraestructure.user.repository.user import User as UserRepository
 
 
-@given('a new VALID user')
-def new_user_valid(context):
-    context.my_new_user = UserEntity("test2321@vicdoz.com", "PASSWORD_TEST")
+@given('I try to register a user with username empty and password "{password}"')
+@given('I try to register a user with username "{username}" and password empty')
+@given('I try to register a user with username "{username}" and password "{password}"')
+def new_user_valid(context, username=None, password=None):
+    try:
+        context.my_new_user = UserEntity(username, password)
+        context.exc = None
+    except Exception as ex:
+        context.exc = str(ex)
+        context.my_new_user = None
 
 
 @when('we register the user')
@@ -25,16 +32,7 @@ def check_new_user_saved(context):
     assert context.user == context.my_new_user
 
 
-@given('a new INVALID user')
-def new_user_invalid(context):
-    try:
-        context.my_new_user = UserEntity("test2321@NOTVALIDDOMAIN.com", "PASSWORD_TEST")
-        context.exc = None
-    except Exception as ex:
-        context.exc = str(ex)
-        context.my_new_user = None
+@then('the error "{error}" is shown')
+def check_new_user_without_any_field(context, error):
+    assert context.exc == error
 
-
-@then('the domain is not allowed and the user is not created')
-def check_new_user_not_saved(context):
-    assert context.exc == "Not allowed domain for this user"
