@@ -4,5 +4,8 @@ python:
   - '3.5'
 
 script:
-    - mamba tests/domain/
+    # API TESTS
     - behave tests/api/feature
+    # DOMAIN TESTS
+    - mamba tests/domain/
+    - behave tests/domain/service/feature
