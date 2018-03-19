@@ -30,6 +30,7 @@ with description(UserService) as self:
 
     with description("User with invalid domain"):
         with it("with domain = GMAIL.COM"):
+            # This is not the way, but the expect assertion can't instanciate an object that raises a exception
             user_entity = UserEntity("test_register@vicdoz.com", "THE_PASSWORD_SUPERSECURE")
             user_entity.email = "test_register@GMAIL.COM"
             expect(user_entity.validate_email).to(raise_error)
