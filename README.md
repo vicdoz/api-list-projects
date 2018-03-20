@@ -1,5 +1,5 @@
 The objective of this repository is to play with TDD in python.
-
+[![Language](https://img.shields.io/badge/language-python-brightgreen.svg)](https://img.shields.io/badge/language-python-brightgreen.svg)
 [![Build Status](https://travis-ci.org/vicdoz/api-list-projects.svg?branch=master)](https://travis-ci.org/vicdoz/api-list-projects)
 [![codecov](https://codecov.io/gh/vicdoz/api-list-projects/branch/master/graph/badge.svg)](https://codecov.io/gh/vicdoz/api-list-projects)
 

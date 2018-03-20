@@ -28,12 +28,11 @@ class User(UserInterface):
     def get(self, entity):
         return self.get_by_email_and_password(entity)
 
-
-    def save(self, user_entity):
+    def save(self, entity):
         try:
             user = UserModel(
-                email=user_entity.email,
-                password=user_entity.password
+                email=entity.email,
+                password=entity.password
             )
             self.db.add(user)
             self.db.commit()
