@@ -1,14 +1,14 @@
 from domain.user.entity.user import User as UserEntity
 from domain.user.service.user import User as UserService
-from infraestructure.user.repository.user import User as user_repository
+from infraestructure.user.repository.user import User as UserRepository
 
 
 class Login:
-    user_repository = None
     user_service = None
+    user_repository = None
 
     def __init__(self):
-        self.user_repository = user_repository()
+        self.user_repository = UserRepository()
         self.user_service = UserService(self.user_repository)
 
     def login(self, email, password):
