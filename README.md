@@ -1,4 +1,5 @@
 The objective of this repository is to play with TDD in python.
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bce14455ee804c2daa72b7bc15e2aceb)](https://app.codacy.com/app/vicdoz/api-list-projects?utm_source=github.com&utm_medium=referral&utm_content=vicdoz/api-list-projects&utm_campaign=badger)
 [![Language](https://img.shields.io/badge/language-python-brightgreen.svg)](https://img.shields.io/badge/language-python-brightgreen.svg)
 [![Build Status](https://travis-ci.org/vicdoz/api-list-projects.svg?branch=master)](https://travis-ci.org/vicdoz/api-list-projects)
 [![codecov](https://codecov.io/gh/vicdoz/api-list-projects/branch/master/graph/badge.svg)](https://codecov.io/gh/vicdoz/api-list-projects)
