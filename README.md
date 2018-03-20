@@ -1,8 +1,10 @@
 The objective of this repository is to play with TDD in python.
+
 [![Language](https://img.shields.io/badge/language-python-brightgreen.svg)](https://img.shields.io/badge/language-python-brightgreen.svg)
 [![Build Status](https://travis-ci.org/vicdoz/api-list-projects.svg?branch=master)](https://travis-ci.org/vicdoz/api-list-projects)
 [![codecov](https://codecov.io/gh/vicdoz/api-list-projects/branch/master/graph/badge.svg)](https://codecov.io/gh/vicdoz/api-list-projects)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f2530e3f0db34ec3ae166b7dadb03a73)](https://www.codacy.com/app/vicdoz/api-list-projects?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=vicdoz/api-list-projects&amp;utm_campaign=Badge_Grade)
+
 <b>Requirements</b><br>
 
 Requirement 1: :white_check_mark: <br>
