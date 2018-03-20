@@ -1,6 +1,7 @@
 from sqlalchemy import and_, create_engine
 from sqlalchemy.orm import sessionmaker
-from infraestructure.user.repository.user_interface import UserInterface
+
+from domain.user.repository_interface.user_interface import UserInterface
 from infraestructure.config import Config
 from infraestructure.user.model.user import User as UserModel
 
