@@ -1,5 +1,3 @@
-from infraestructure.user.repository.user import User as user_repository
-
 class User:
     repository = None
 
