@@ -15,3 +15,4 @@ engines:
 exclude_paths:
   - '**/spec/**'
   - '**/tests/**'
+  - 'tests/'
