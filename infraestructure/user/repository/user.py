@@ -1,16 +1,18 @@
 from sqlalchemy import and_, create_engine
 from sqlalchemy.orm import sessionmaker
 
+from domain.user.repository_interface.user_interface import UserInterface
 from infraestructure.config import Config
 from infraestructure.user.model.user import User as UserModel
 
 engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
 
 
-class User:
+class User(UserInterface):
     db = None
 
     def __init__(self):
+        UserInterface.__init__(self)
         Session = sessionmaker(bind=engine, autoflush=True, autocommit=False)
         self.db = Session()
 
@@ -23,11 +25,14 @@ class User:
         user_data = filter_data.one_or_none()
         return user_data
 
-    def save(self, user_entity):
+    def get(self, entity):
+        return self.get_by_email_and_password(entity)
+
+    def save(self, entity):
         try:
             user = UserModel(
-                email=user_entity.email,
-                password=user_entity.password
+                email=entity.email,
+                password=entity.password
             )
             self.db.add(user)
             self.db.commit()
