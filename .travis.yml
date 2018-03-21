@@ -7,8 +7,7 @@ script:
     # API TESTS
     - behave tests/api/feature
     # DOMAIN TESTS
-    - mamba tests/domain/
-    - behave tests/domain/use_case/register
+    - behave tests/domain/use_case/user
 
 
 after_success:
