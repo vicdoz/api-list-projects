@@ -1,5 +1,5 @@
 from behave import given, when, then
-from domain.user.use_case.register import Register as RegisterUseCase
+from domain.user.use_case.login import Login as LoginUseCase
 
 from domain.user.entity.user import User as UserEntity
 from unittest.mock import MagicMock
@@ -17,20 +17,20 @@ def new_user_valid(context, username=None, password=None):
 
 
 @when('we try to login the user valid')
-def register_user(context):
-    context.user_repository.save = MagicMock(return_value=UserEntity(context.email, context.password))
-    context.register_use_case = RegisterUseCase()
-    context.register_use_case.user_service.repository = context.user_repository
-    context.user = context.register_use_case.register(email=context.email, password=context.password)
+def login_user(context):
+    context.user_repository.get = MagicMock(return_value=UserEntity(context.email, context.password))
+    context.login_use_case = LoginUseCase()
+    context.login_use_case.user_service.repository = context.user_repository
+    context.user = context.login_use_case.login(email=context.email, password=context.password)
 
 
 @when('we try to login the user invalid')
-def register_user(context):
+def login_user(context):
     try:
-        context.user_repository.save = MagicMock(return_value=UserEntity(context.email, context.password))
-        context.register_use_case = RegisterUseCase()
-        context.register_use_case.user_service.repository = context.user_repository
-        context.user = context.register_use_case.register(email=context.email, password=context.password)
+        context.user_repository.get = MagicMock(return_value=UserEntity(context.email, context.password))
+        context.login_use_case = LoginUseCase()
+        context.login_use_case.user_service.repository = context.user_repository
+        context.user = context.login_use_case.login(email=context.email, password=context.password)
     except Exception as ex:
         context.exc = str(ex)
         context.my_new_user = None

@@ -5,7 +5,7 @@ class User:
         self.repository = user_repository
 
     def login(self, my_user):
-        return self.repository.get_by_email_and_password(my_user)
+        return self.repository.get(my_user)
 
     def register(self, my_user):
         return self.repository.save(my_user)
