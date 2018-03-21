@@ -1,5 +1,6 @@
 from behave import given, when, then
-from domain.user.service.user import User as UserService
+from domain.user.use_case.register import Register as RegisterUseCase
+
 from domain.user.entity.user import User as UserEntity
 from unittest.mock import MagicMock
 from infraestructure.user.repository.user import User as UserRepository
@@ -17,14 +18,19 @@ def new_user_valid(context, username=None, password=None):
         context.my_new_user = None
 
 
-@when('we register the user')
+@when('we try to register the user')
 def register_user(context):
     # Mocking the repository
     context.user_repository = UserRepository()
     context.user_repository.save = MagicMock(return_value=context.my_new_user)
-
-    user_service = UserService(context.user_repository)
-    context.user = user_service.register(context.my_new_user)
+    register_use_case = RegisterUseCase()
+    register_use_case.user_repository = context.user_repository
+    register_use_case.user_service.repository = context.user_repository
+    try:
+        context.user = register_use_case.user_service.register(context.my_new_user)
+    except Exception as ex:
+        context.exc = str(ex)
+        context.my_new_user = register_use_case.my_user
 
 
 @then('the user is saved')
