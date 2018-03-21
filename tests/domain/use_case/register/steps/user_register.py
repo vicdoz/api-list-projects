@@ -10,6 +10,8 @@ from infraestructure.user.repository.user import User as UserRepository
 @given('I try to register a user with username "{username}" and password empty')
 @given('I try to register a user with username "{username}" and password "{password}"')
 def new_user_valid(context, username=None, password=None):
+    context.email = username
+    context.password = password
     try:
         context.my_new_user = UserEntity(username, password)
         context.exc = None
@@ -27,7 +29,7 @@ def register_user(context):
     register_use_case.user_repository = context.user_repository
     register_use_case.user_service.repository = context.user_repository
     try:
-        context.user = register_use_case.user_service.register(context.my_new_user)
+        context.user = register_use_case.register(email=context.email, password=context.password)
     except Exception as ex:
         context.exc = str(ex)
         context.my_new_user = register_use_case.my_user
