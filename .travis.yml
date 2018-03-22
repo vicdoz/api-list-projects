@@ -7,7 +7,6 @@ script:
     # API TESTS
     - behave tests/api/feature
     # DOMAIN TESTS
-    - behave tests/domain/use_case/user
     - behave tests/domain/use_case/
 
 
