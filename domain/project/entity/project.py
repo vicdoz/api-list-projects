@@ -8,6 +8,5 @@ class Project:
         pass
 
 
-
 class ProjectException(Exception):
     pass
