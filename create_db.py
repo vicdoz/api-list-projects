@@ -1,6 +1,7 @@
-import user.model.user as model
 from sqlalchemy import create_engine
 from sqlalchemy_utils import create_database, database_exists, drop_database
+
+import infraestructure.user.model.user as model
 
 from infraestructure.config import DB_URI
 
@@ -18,6 +19,7 @@ def setup_package():
     create_database(engine.url)
     print("Creating tables")
     model.Base.metadata.create_all(engine)
+    print("Created!.")
     engine.dispose()
 
 

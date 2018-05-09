@@ -7,10 +7,10 @@ script:
     # API TESTS
     - behave tests/api/feature
     # DOMAIN TESTS
-    - behave tests/domain/use_case/user
+    - behave tests/domain/use_case/
 
 
 after_success:
     # Send coverage to Codecov
-    - coverage run --source=domain -m behave tests/domain/use_case/user
+    - coverage run --source=domain -m behave tests/domain/use_case/
     - bash <(curl -s https://codecov.io/bash) -t 209b6cec-bad0-4164-a594-0b08db97aca6
